@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calculator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="calcu.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <input id="answer" class="textbox" type="text" readonly>
+        <table class="number-container">
+            <tr>
+                <td><button id="num7" onclick="AC()">AC</button></td>
+                <td><button id="num8" onclick="num8()">C</button></td>
+                <td><button id="num9" onclick="num9()">+-</button></td>
+                <td><button id="multiply" onclick="multiply()">*</button></td>
+            </tr>
+            <tr>
+                <td><button id="num7" onclick="num7()">7</button></td>
+                <td><button id="num8" onclick="num8()">8</button></td>
+                <td><button id="num9" onclick="num9()">9</button></td>
+                <td><button id="Add" onclick="Add()">+</button></td>
+            </tr>
+            <tr>
+                <td><button id="num4" onclick="num4()">4</button></td>
+                <td><button id="num5" onclick="num5()">5</button></td>
+                <td><button id="num6" onclick="num6()">6</button></td>
+                <td><button id="Subtract" onclick="Subtract()">-</button></td>
+            </tr>
+            <tr>
+                <td><button id="num1" onclick="num1()">1</button></td>
+                <td><button id="num2" onclick="num2()">2</button></td>
+                <td><button id="num3" onclick="num3()">3</button></td>
+                <td><button id="Divide" onclick="Divide()">/</button></td>
+            </tr>
+            <tr>
+                <td><button id="num0" onclick="num0()">0</button></td>
+                <td><button id="point" onclick="point()">.</button></td>
+                <td><button id="equal" onclick="equals()">=</button></td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script src="calcu.js"></script>
+</html>

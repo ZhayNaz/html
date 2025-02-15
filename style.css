@@ -1,0 +1,35 @@
+body{
+    background: #000;
+}
+h1{
+    color: white;
+    justify-self: center;
+}
+td{
+    height: 20px;
+    width: 20px;
+}
+
+.element-container {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    text-shadow: 2px 2px 1px black;
+    color: white;
+    font-style:normal;
+    font-size: small;
+    box-shadow: 0px 0px 5px rgba(0, 255, 204, 0.8);
+    justify-content: space-between;
+}
+
+.table {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    height: 80%;
+    width: 80;
+    box-shadow: 0px 0px 5px rgba(0, 255, 204, 0.8);
+    justify-self: center;
+}
