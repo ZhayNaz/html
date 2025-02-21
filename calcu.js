@@ -8,12 +8,14 @@ function updateDisplay(value) {
 function appendNumber(num) {
     let answer = document.getElementById("answer");
 
+    if (num === "." && answer.value.includes(".")) return;
+
+    answer.value += num;
+
     if (operations === "") {
-        char1 = parseFloat((char1 !== null ? char1 : "") + num);
-        answer.value = char1;
+        char1 = answer.value;
     } else {
-        char2 = parseFloat((char2 !== null ? char2 : "") + num);
-        answer.value = char2;
+        char2 = answer.value;
     }
 }
 
@@ -28,6 +30,16 @@ function num7() { appendNumber("7"); }
 function num8() { appendNumber("8"); }
 function num9() { appendNumber("9"); }
 
+function point() {
+    let answer = document.getElementById("answer");
+
+    if (answer.value === "" || answer.value === "-" || (operations !== "" && char2 === null)) {
+        appendNumber("0."); 
+    } else if (!answer.value.includes(".")) {
+        appendNumber(".");
+    }
+}
+
 function AC() {
     updateDisplay("");
     char1 = null;
@@ -36,79 +48,73 @@ function AC() {
 }
 
 function C() {
-   let answer = document.getElementById("answer").value;
-   
-   if (operations === "") {
-         char1 = char1 ? Math.floor(char1 / 10) : null;
-         updateDisplay(char1 !== null ? char1 : "");
-   } else {
-         char2 = char2 ? Math.floor(char2 / 10) : null;
-         updateDisplay(char2 !== null ? char2 : "");
-   }
+    let answer = document.getElementById("answer").value;
+    
+    if (operations === "") {
+        char1 = char1 ? char1.toString().slice(0, -1) : null;
+        updateDisplay(char1 !== null ? char1 : "");
+    } else {
+        char2 = char2 ? char2.toString().slice(0, -1) : null;
+        updateDisplay(char2 !== null ? char2 : "");
+    }
 }
 
 function positiveNegative() {
-   let answer = document.getElementById("answer");
+    let answer = document.getElementById("answer");
 
-   if (operations === "") {
-       char1 = char1 !== null ? -char1 : null;
-       updateDisplay(char1);
-   } else {
-       char2 = char2 !== null ? -char2 : null;
-       updateDisplay(char2);
-   }
-}
-
-function multiply() {
-    if (char1 !== null) {
-        operations = "multiply";
-        updateDisplay(char1 + " *");
+    if (operations === "") {
+        char1 = char1 !== null ? -parseFloat(char1) : null;
+        updateDisplay(char1);
+    } else {
+        char2 = char2 !== null ? -parseFloat(char2) : null;
+        updateDisplay(char2);
     }
 }
 
-function add() {
+function setOperation(op) {
     if (char1 !== null) {
-        operations = "add";
-        updateDisplay(char1 + " +");
+        operations = op;
+        updateDisplay("");
     }
 }
 
-function subtract() {
-    if (char1 !== null) {
-        operations = "subtract";
-        updateDisplay(char1 + " -");
-    }
-}
-
-function divide() {
-    if (char1 !== null) {
-        operations = "divide";
-        updateDisplay(char1 + " /");
-    }
-}
+function multiply() { setOperation("multiply"); }
+function add() { setOperation("add"); }
+function subtract() { setOperation("subtract"); }
+function divide() { setOperation("divide"); }
 
 function equals() {
-    if (operations !== "" && char1 !== null && char2 !== null) {
-        let result;
+    let answer = document.getElementById("answer");
+
+    if (char1 !== null && char2 === null) {
+        answer.value = char1;
+        return;
+    }
+
+    if (char1 !== null && char2 !== null) {
+        let num1 = parseFloat(char1);
+        let num2 = parseFloat(char2);
+        let result = 0;
+
         switch (operations) {
             case "multiply":
-                result = char1 * char2;
+                result = num1 * num2;
                 break;
             case "add":
-                result = char1 + char2;
+                result = num1 + num2;
                 break;
             case "subtract":
-                result = char1 - char2;
+                result = num1 - num2;
                 break;
             case "divide":
-                result = char2 !== 0 ? char1 / char2 : "ERROR";
+                result = num2 !== 0 ? num1 / num2 : "ERROR"; 
                 break;
             default:
                 result = "ERROR";
         }
 
-        updateDisplay(result);
-        char1 = result; 
+        answer.value = result;
+        char1 = result.toString(); 
         char2 = null;
         operations = "";
     }
