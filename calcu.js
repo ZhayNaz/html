@@ -40,14 +40,14 @@ function point() {
     }
 }
 
-function AC() {
+function C() {
     updateDisplay("");
     char1 = null;
     char2 = null;
     operations = "";
 }
 
-function C() {
+function AC() {
     let answer = document.getElementById("answer").value;
     
     if (operations === "") {
